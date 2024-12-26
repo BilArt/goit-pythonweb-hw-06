@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Date, Float
+from sqlalchemy import Column, Integer, String, ForeignKey, Float, Date
 from sqlalchemy.orm import relationship, declarative_base
 
 Base = declarative_base()
@@ -13,7 +13,6 @@ class Student(Base):
     group = relationship('Group', back_populates='students')
     grades = relationship('Grade', back_populates='student')
 
-
 class Group(Base):
     __tablename__ = 'groups'
 
@@ -22,7 +21,6 @@ class Group(Base):
 
     students = relationship('Student', back_populates='group')
 
-
 class Teacher(Base):
     __tablename__ = 'teachers'
 
@@ -30,7 +28,6 @@ class Teacher(Base):
     name = Column(String, nullable=False)
 
     subjects = relationship('Subject', back_populates='teacher')
-
 
 class Subject(Base):
     __tablename__ = 'subjects'
@@ -41,7 +38,6 @@ class Subject(Base):
 
     teacher = relationship('Teacher', back_populates='subjects')
     grades = relationship('Grade', back_populates='subject')
-
 
 class Grade(Base):
     __tablename__ = 'grades'
